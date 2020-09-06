@@ -7,7 +7,9 @@ import { UserContext } from '../../UserContext';
 
 function Login() {
   const { globalUser, setGlobalUser } = useContext(UserContext);
-
+  //test
+  console.log(globalUser);
+  //
   auth.onAuthStateChanged((user) => {
     if (user) {
       setGlobalUser(user);

@@ -1,0 +1,8 @@
+.stage-jumbotron {
+  height: 100vh;
+}
+
+.stage-middle-scroll {
+  height: 100vh;
+  overflow-y: auto;
+}

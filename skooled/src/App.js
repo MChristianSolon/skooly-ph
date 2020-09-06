@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrimarySearchAppBar from './components/Navbar/MenuAppBar';
 import Login from './components/login/Login';
 import Gallery from './components/gallery/Gallery';
@@ -9,13 +9,11 @@ import './App.css';
 
 function App() {
   const [globalUser, setGlobalUser] = useState(null);
+
   return (
     <Router>
-      <div className="App">
+      <div>
         <PrimarySearchAppBar />
-        <Link to="/">Log-in</Link>
-        <Link to="/gallery">gallery</Link>
-        <Link to="/stage">stage</Link>
         <Switch>
           <UserContext.Provider value={{ globalUser, setGlobalUser }}>
             <Route component={Login} exact path="/" />

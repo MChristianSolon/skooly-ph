@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,7 +15,15 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { auth } from '../../Firebase';
-
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import InboxIcon from '@material-ui/icons/Inbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -81,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+  const [open, setOpen] = useState(false);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -170,11 +179,15 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
+  function handleDrawer() {
+    setOpen(true);
+  }
   return (
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
+            onClick={handleDrawer}
             edge="start"
             className={classes.menuButton}
             color="inherit"
@@ -234,6 +247,43 @@ export default function PrimarySearchAppBar() {
           </div>
         </Toolbar>
       </AppBar>
+
+      <Drawer
+        className="drawer"
+        anchor="left"
+        open={open}
+        onClose={() => setOpen(false)}
+      >
+        <div style={{ height: '100%', width: '250px' }}>
+          <List component="nav" aria-label="main mailbox folders">
+            <Link to="/">
+              <ListItem button>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Home" />
+              </ListItem>
+            </Link>
+            <Link to="/gallery">
+              <ListItem button>
+                <ListItemIcon>
+                  <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Gallery" />
+              </ListItem>
+            </Link>
+            <Link to="/stage">
+              <ListItem button>
+                <ListItemIcon>
+                  <DraftsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Stage" />
+              </ListItem>
+            </Link>
+          </List>
+          <Divider />
+        </div>
+      </Drawer>
       {renderMobileMenu}
       {renderMenu}
     </div>

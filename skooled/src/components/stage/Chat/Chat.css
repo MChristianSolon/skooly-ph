@@ -1,0 +1,29 @@
+body {
+  overflow: hidden;
+}
+.chat {
+  height: 100vh;
+}
+
+.chat-cardContent {
+  background-color: white;
+  color: black;
+}
+
+.chat-cardColor {
+  width: fit-content;
+}
+
+.chat-form {
+  position: absolute;
+  bottom: 5px;
+}
+
+.chat-form-field {
+  width: 100vw;
+}
+
+.chat-scroll {
+  height: 80vh;
+  overflow-y: auto;
+}
